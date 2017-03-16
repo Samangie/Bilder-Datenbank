@@ -2,10 +2,9 @@
 
 $form = new Form('/user/doCreate');
 
-echo $form->text()->label('Vorname')->name('firstName');
-echo $form->text()->label('Nachname')->name('lastName');
-echo $form->text()->label('Mail')->name('email');
-// echo $form->password()->label('Password')->name('password');
-echo $form->submit()->label('Benutzer erstellen')->name('send');
+echo $form->text()->placeholder('Benutzername')->name('username')->type('text');
+echo $form->text()->placeholder('Mail')->name('email')->type('email');
+echo $form->text()->placeholder('Passwort')->name('password')->type('password');
+echo $form->submit()->label('Registrieren')->name('send');
 
 $form->end();

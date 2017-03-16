@@ -2,41 +2,36 @@
 
 require_once '../repository/UserRepository.php';
 
-/**
- * Siehe Dokumentation im DefaultController.
- */
 class UserController
 {
     public function index()
     {
-        $userRepository = new UserRepository();
-
         $view = new View('user_index');
-        $view->title = 'Benutzer';
-        $view->heading = 'Benutzer';
-        $view->users = $userRepository->readAll();
+        $view->title = 'Login';
+        $view->heading = 'Login';
         $view->display();
     }
 
     public function create()
     {
         $view = new View('user_create');
-        $view->title = 'Benutzer erstellen';
-        $view->heading = 'Benutzer erstellen';
+        $view->title = 'Registrieren';
+        $view->heading = 'Registrieren';
         $view->display();
     }
 
     public function doCreate()
     {
         if ($_POST['send']) {
-            $firstName = $_POST['firstName'];
-            $lastName = $_POST['lastName'];
+            $username = $_POST['username'];
             $email = $_POST['email'];
-            // $password  = $_POST['password'];
-            $password = 'no_password';
+            $password = 'password';
+
+            $userValidation = new Validate();
+
 
             $userRepository = new UserRepository();
-            $userRepository->create($firstName, $lastName, $email, $password);
+            $userRepository->create($username, $email, $password);
         }
 
         // Anfrage an die URI /user weiterleiten (HTTP 302)
