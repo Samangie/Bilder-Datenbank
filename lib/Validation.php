@@ -9,9 +9,9 @@
 class Validation
 {
 
-    private function validateText($value, $type) {
+    public function validateText($value, $type) {
 
-        if(preg_match('', $value)){
+        if(preg_match('/^([A-Z])\w+$/', $value)){
             return true;
         }
 
@@ -20,29 +20,39 @@ class Validation
 
     }
 
-    private function validateEmail($value, $type) {
+    public function validateEmail($value, $type) {
 
-        if(preg_match('', $value)){
+        if(preg_match(FILTER_VALIDATE_EMAIL, $value)){
             return true;
         }
         $this->createErrorSession($type, 'Invalid');
         return false;
     }
 
-    private function validatePassword($value, $type) {
+    public function validatePassword($value, $type) {
 
-        if(preg_match('', $value)){
+        if(preg_match('/^(?=.*\d)(?=.*[@#\-_$%^&+=§!\?])(?=.*[a-z])(?=.*[A-Z])[0-9A-Za-z@#\-_$%^&+=§!\?]{8,}$/', $value)){
             return true;
         }
         $this->createErrorSession($type, 'Invalid');
         return false;
     }
 
-    private function existText($value, $type) {
+    public function checkPassword($value, $valueToCheck, $type) {
+
+        if($value == $valueToCheck) {
+            return true;
+        }
+        $this->createErrorSession($type, 'Different');
+        return false;
+    }
+
+    public function existText($value, $type) {
 
         $query = "SELECT id FROM `user` WHERE $type = ?";
 
         $statement = ConnectionHandler::getConnection()->prepare($query);
+
         $statement->bind_param('s', $value);
 
         if (!$statement->execute()) {
@@ -60,10 +70,12 @@ class Validation
     }
 
     private function createErrorSession($type, $errorType) {
-
+        die();
         $errorMessage = 'errror' . $type;
         if($errorType == 'Exist'){
             $errorContent = '<p class="warning">Eingabe existiert bereits!</p>';
+        }else if ($errorType == 'Different') {
+            $errorContent = '<p class="warning">Nicht das selbe Passwort!</p>';
         }else {
             $errorContent = '<p class="warning">Invalide Eingabe!</p>';
         }

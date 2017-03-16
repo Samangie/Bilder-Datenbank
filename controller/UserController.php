@@ -1,6 +1,7 @@
 <?php
 
 require_once '../repository/UserRepository.php';
+require_once '../lib/Validation.php';
 
 class UserController
 {
@@ -25,10 +26,19 @@ class UserController
         if ($_POST['send']) {
             $username = $_POST['username'];
             $email = $_POST['email'];
-            $password = 'password';
+            $password = $_POST['password'];
+            $confpassword = $_POST['confpassword'];
 
-            $userValidation = new Validate();
+            $userValidation = new Validation();
 
+            $userValidation->validateText($username, 'ValidUsername');
+            $userValidation->existText($username, 'Username');
+
+            $userValidation->validateEmail($email, 'ValidEmail');
+            $userValidation->existEmail($email, 'Email');
+
+            $userValidation->validatePassword($password, 'Password');
+            $userValidation->checkPassword($password, $confpassword, 'SamePassword');
 
             $userRepository = new UserRepository();
             $userRepository->create($username, $email, $password);
