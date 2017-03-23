@@ -2,8 +2,8 @@
 
 $form = new Form('/user/doCreate');
 
-if(isset($_SESSION["errorValidUsername"])){
-    echo $_SESSION["errorValidUsername"];
+if(isset($_SESSION['errorValidUsername'])){
+    echo $_SESSION['errorValidUsername'];
     unset($_SESSION['errorValidUsername']);
 }
 

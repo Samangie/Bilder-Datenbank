@@ -11,7 +11,7 @@ class Validation
 
     public function validateText($value, $type) {
 
-        if(preg_match('/^([A-Z])\w+$/', $value)){
+        if(isset($value) && strlen(trim($value))){
             return true;
         }
 
@@ -22,7 +22,7 @@ class Validation
 
     public function validateEmail($value, $type) {
 
-        if(preg_match(FILTER_VALIDATE_EMAIL, $value)){
+        if(preg_match("/FILTER_VALIDATE_EMAIL/", $value)){
             return true;
         }
         $this->createErrorSession($type, 'Invalid');
@@ -59,7 +59,7 @@ class Validation
             throw new Exception($statement->error);
         }
 
-        $result = $statement->get_result;
+        $result = $statement->get_result();
 
         if(mysqli_num_rows($result) == 0) {
             return true;
@@ -69,9 +69,8 @@ class Validation
         return false;
     }
 
-    private function createErrorSession($type, $errorType) {
-        die();
-        $errorMessage = 'errror' . $type;
+    function createErrorSession($type, $errorType) {
+        $errorMessage = 'error' . $type;
         if($errorType == 'Exist'){
             $errorContent = '<p class="warning">Eingabe existiert bereits!</p>';
         }else if ($errorType == 'Different') {
@@ -79,8 +78,7 @@ class Validation
         }else {
             $errorContent = '<p class="warning">Invalide Eingabe!</p>';
         }
-        $SESSION[$errorMessage] = $errorContent;
 
-        header("location:javascript://history.go(-1)");
+        $_SESSION[$errorMessage] = $errorContent;
     }
 }

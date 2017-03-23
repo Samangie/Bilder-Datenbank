@@ -31,21 +31,28 @@ class UserController
 
             $userValidation = new Validation();
 
-            $userValidation->validateText($username, 'ValidUsername');
-            $userValidation->existText($username, 'Username');
+            $validUsername = $userValidation->validateText($username, 'ValidUsername');
+            $existUsername = $userValidation->existText($username, 'Username');
 
-            $userValidation->validateEmail($email, 'ValidEmail');
-            $userValidation->existEmail($email, 'Email');
+            $validEmail = $userValidation->validateEmail($email, 'ValidEmail');
+            $existEmail = $userValidation->existText($email, 'Email');
 
-            $userValidation->validatePassword($password, 'Password');
-            $userValidation->checkPassword($password, $confpassword, 'SamePassword');
+            $validPassword = $userValidation->validatePassword($password, 'Password');
+            $validconfPassword = $userValidation->checkPassword($password, $confpassword, 'SamePassword');
+
+            if( !$validUsername || !$existUsername || !$validEmail ||
+            !$existEmail || !$validPassword || !$validconfPassword){
+                header("location:javascript://history.go(-1)");
+
+            }else {
+                die("Test");
 
             $userRepository = new UserRepository();
             $userRepository->create($username, $email, $password);
+                header('Location: /user');
+            }
         }
 
-        // Anfrage an die URI /user weiterleiten (HTTP 302)
-        header('Location: /user');
     }
 
     public function delete()
