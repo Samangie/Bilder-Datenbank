@@ -42,4 +42,24 @@ class UserRepository extends Repository
 
         return $statement->insert_id;
     }
+
+    public function login($username, $password){
+        $password = sha1($password);
+
+        $query = "SELECT `id` FROM $this->tableName WHERE username = ? AND password = ?";
+        $statement = ConnectionHandler::getConnection()->prepare($query);
+        if (!$statement) {
+            throw new Exception(ConnectionHandler::getConnection()->error);
+        }
+        $statement->bind_param('ss', $username, $password);
+        if(!$statement->execute()) {
+            throw new Exception($statement->error);
+        };
+        $result = $statement->get_result();
+        $user = $result->fetch_assoc();
+        if ($user['id'] > 0) {
+            $_SESSION['loggedin'] = true;
+            $_SESSION['username'] = $username;
+        }
+    }
 }

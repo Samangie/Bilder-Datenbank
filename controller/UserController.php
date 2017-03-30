@@ -21,6 +21,18 @@ class UserController
         $view->display();
     }
 
+    public function logout()
+    {
+        $view = new View('user_logout');
+        $view->title = 'Logout';
+        $view->heading = 'Logout';
+
+        unset($_SESSION['loggedin']);
+        session_destroy();
+        header('Location: /');
+        exit ('Sie konnten nicht Abgemeldet werden. Versuchen Sie es erneut.');
+    }
+
     public function doCreate()
     {
         if ($_POST['send']) {
@@ -29,30 +41,37 @@ class UserController
             $password = $_POST['password'];
             $confpassword = $_POST['confpassword'];
 
-            $userValidation = new Validation();
-
-            $validUsername = $userValidation->validateText($username, 'ValidUsername');
-            $existUsername = $userValidation->existText($username, 'Username');
-
-            $validEmail = $userValidation->validateEmail($email, 'ValidEmail');
-            $existEmail = $userValidation->existText($email, 'Email');
-
-            $validPassword = $userValidation->validatePassword($password, 'Password');
-            $validconfPassword = $userValidation->checkPassword($password, $confpassword, 'SamePassword');
-
-            if( !$validUsername || !$existUsername || !$validEmail ||
-            !$existEmail || !$validPassword || !$validconfPassword){
-                header("location:javascript://history.go(-1)");
-
-            }else {
-                die("Test");
-
             $userRepository = new UserRepository();
             $userRepository->create($username, $email, $password);
-                header('Location: /user');
+
+            $_SESSION['loggedin'] = true;
+            $_SESSION['username'] = $username;
+
+            if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+                header('Location: /');
             }
+
         }
 
+    }
+
+    public function doLogin()
+    {
+        if ($_POST['send']) {
+            $username = $_POST['username'];
+            $password = $_POST['password'];
+
+            $userRepository = new UserRepository();
+            $userRepository->login($username, $password);
+            header('Location: /user');
+        }
+        if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+            header('Location: /');
+        }
+        else{
+            $_SESSION["errorLogin"] = '<p style="color:red;">Wrong username or password!</p>';
+            header('Location: /user');
+        }
     }
 
     public function delete()

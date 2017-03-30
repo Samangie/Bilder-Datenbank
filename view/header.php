@@ -1,6 +1,3 @@
-<?php
-session_start();
-?>
 <!DOCTYPE html>
 <html lang="de">
   <head>
@@ -32,13 +29,18 @@ session_start();
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/">Bbc MVC</a>
+          <a class="navbar-brand" href="/">Bildergalerie</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li><a href="/">Home</a></li>
-            <li><a href="/user">Benutzer</a></li>
-            <li><a href="/user/create">Benutzer erstellen</a></li>
+              <?php if (Security::isLoggedIn()) : ?>
+                  <li><a href="#">Upload</a></li>
+                  <li><a href="/user/logout">Logout</a></li>
+              <?php else : ?>
+                  <li><a href="#">Login</a></li>
+                  <li><a href="/user/create">Registrieren</a></li>
+              <?php endif; ?>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

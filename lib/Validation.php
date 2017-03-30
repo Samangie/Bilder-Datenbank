@@ -78,7 +78,6 @@ class Validation
         }else {
             $errorContent = '<p class="warning">Invalide Eingabe!</p>';
         }
-
         $_SESSION[$errorMessage] = $errorContent;
     }
 }
