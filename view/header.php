@@ -36,9 +36,10 @@
             <li><a href="/">Home</a></li>
               <?php if (Security::isLoggedIn()) : ?>
                   <li><a href="#">Upload</a></li>
+                  <li><a href="/gallery">Gallery</a></li>
                   <li><a href="/user/logout">Logout</a></li>
               <?php else : ?>
-                  <li><a href="#">Login</a></li>
+                  <li><a href="/user">Login</a></li>
                   <li><a href="/user/create">Registrieren</a></li>
               <?php endif; ?>
           </ul>
