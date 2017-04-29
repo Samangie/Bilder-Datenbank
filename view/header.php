@@ -37,10 +37,10 @@
               <?php if (Security::isLoggedIn()) : ?>
                   <li><a href="#">Upload</a></li>
                   <li><a href="/gallery">Gallery</a></li>
-                  <li><a href="/user/logout">Logout</a></li>
+                  <li><a href="/access/logout">Logout</a></li>
               <?php else : ?>
-                  <li><a href="/user">Login</a></li>
-                  <li><a href="/user/create">Registrieren</a></li>
+                  <li><a href="/access">Login</a></li>
+                  <li><a href="/access/create">Registrieren</a></li>
               <?php endif; ?>
           </ul>
         </div><!--/.nav-collapse -->
