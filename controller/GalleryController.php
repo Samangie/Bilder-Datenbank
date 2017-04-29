@@ -1,5 +1,5 @@
 <?php
-require_once '../repository/GalleryRepository.php';
+require_once '../repository/GalleryCategoryRepository.php';
 
 class GalleryController
 {
@@ -8,7 +8,7 @@ class GalleryController
         $view = new View('gallery_index');
         $view->title = 'Gallery';
         $view->heading = 'Gallery';
-        $galleryRepository = new GalleryRepository();
+        $galleryRepository = new GalleryCategoryRepository();
         $view->gallery = $galleryRepository->readAll();
         $view->display();
     }
@@ -25,10 +25,10 @@ class GalleryController
     {
         if ($_POST['send']) {
             $title = $_POST['title'];
-            $user = 1;
+            $user = $_SESSION['userid'];
 
-            $galleryRepository = new GalleryRepository();
-            $galleryRepository->createGallery($title, $user);
+            $galleryCategoryRepository = new GalleryCategoryRepository();
+            $galleryCategoryRepository->createGallery($title, $user);
 
             header("Location: /gallery");
         }

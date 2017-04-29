@@ -4,7 +4,7 @@ CREATE DATABASE `bilderdb_4h_hawkes`
 
 USE `bilderdb_4h_hawkes`;
 
-CREATE TABLE `user` (
+CREATE TABLE `access_user` (
   `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `username` VARCHAR(64) NOT NULL ,
   `email` VARCHAR(64) NOT NULL,
@@ -12,18 +12,18 @@ CREATE TABLE `user` (
   `isAdmin` TINYINT DEFAULT 0
 );
 
-CREATE TABLE `gallery` (
+CREATE TABLE `gallery_category` (
   `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `title` VARCHAR(64) NOT NULL,
   `user_id` INT NOT NULL,
-  FOREIGN KEY (`user_id`) REFERENCES `user`(`id`)
+  FOREIGN KEY (`user_id`) REFERENCES `access_user`(`id`)
 );
 
-CREATE TABLE `image` (
+CREATE TABLE `gallery_image` (
   `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `image_name` VARCHAR(64) NOT NULL,
   `title` VARCHAR(64) NOT NULL,
   `gallery_id` INT NOT NULL,
-  FOREIGN KEY (`gallery_id`) REFERENCES `gallery`(`id`)
+  FOREIGN KEY (`gallery_id`) REFERENCES `gallery_category`(`id`)
 )
 

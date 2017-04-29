@@ -1,8 +1,8 @@
 <?php
 require_once '../lib/Repository.php';
-class GalleryRepository extends Repository
+class GalleryCategoryRepository extends Repository
 {
-    protected $tableName = 'gallery';
+    protected $tableName = 'gallery_category';
 
     public function createGallery($title, $user)
     {

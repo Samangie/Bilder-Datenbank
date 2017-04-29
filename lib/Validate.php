@@ -65,7 +65,7 @@ class Validate
      * @return bool true wenn die Eingabe noch nicht existiert
      */
     public function uniqueValue($value, $type) {
-        $query = "SELECT `id` FROM `user` WHERE `$type` = ?";
+        $query = "SELECT `id` FROM `access_user` WHERE `$type` = ?";
 
         $statement = ConnectionHandler::getConnection()->prepare($query);
         if (!$statement) {

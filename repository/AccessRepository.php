@@ -13,7 +13,7 @@ class AccessRepository extends Repository
      * Diese Variable wird von der Klasse Repository verwendet, um generische
      * Funktionen zur Verfügung zu stellen.
      */
-    protected $tableName = 'user';
+    protected $tableName = 'access_user';
 
     /**
      * Erstellt einen neuen benutzer mit den gegebenen Werten.
@@ -29,20 +29,19 @@ class AccessRepository extends Repository
      */
     public function register($username, $email, $password)
     {
-        $password = sha1($password);
+        $passwordhash = sha1($password);
 
         $query = "INSERT INTO $this->tableName (username, email, password) VALUES (?, ?, ?)";
 
         $statement = ConnectionHandler::getConnection()->prepare($query);
 
-        $statement->bind_param('sss', $username, $email, $password);
+        $statement->bind_param('sss', $username, $email, $passwordhash);
 
         if (!$statement->execute()) {
             throw new Exception($statement->error);
         }
 
-        $_SESSION['loggedin'] = true;
-        $_SESSION['username'] = $username;
+        $this->login($username, $password);
         return $statement->insert_id;
     }
 
@@ -59,7 +58,6 @@ class AccessRepository extends Repository
      */
     public function login($username, $password){
         $password = sha1($password);
-        $countRow = 0;
         $query = "SELECT `id`, `isAdmin` FROM $this->tableName WHERE username = ? AND password = ?";
 
         $statement = ConnectionHandler::getConnection()->prepare($query);
@@ -79,6 +77,7 @@ class AccessRepository extends Repository
         if ($user['id'] > 0) {
             $_SESSION['loggedin'] = true;
             $_SESSION['username'] = $username;
+            $_SESSION['userid'] =  $user['id'];
             $_SESSION['isAdmin'] = $user['isAdmin'];
 
         }
