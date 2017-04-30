@@ -1,10 +1,8 @@
 # Bilder Datenbank
 
 ## ToDo
-
-- Register Validation
-- Gallery 
-- Images
+- Images Upload
+- Generate Thumbnails
 - Adminbereich
 - Userprofil
 - Öffentliche Galerien 
