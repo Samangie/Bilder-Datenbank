@@ -35,12 +35,12 @@
           <ul class="nav navbar-nav">
             <li><a href="/">Home</a></li>
               <?php if (Security::isLoggedIn()) : ?>
-                  <li><a href="#">Upload</a></li>
+                  <li><a href="/gallery/upload">Upload</a></li>
                   <li><a href="/gallery">Gallery</a></li>
                   <li><a href="/access/logout">Logout</a></li>
               <?php else : ?>
                   <li><a href="/access">Login</a></li>
-                  <li><a href="/access/create">Registrieren</a></li>
+                  <li><a href="/access/register">Registrieren</a></li>
               <?php endif; ?>
           </ul>
         </div><!--/.nav-collapse -->
