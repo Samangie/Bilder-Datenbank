@@ -10,12 +10,9 @@ class AccessController
 {
     public function index()
     {
-        $userRepository = new AccessRepository();
-
         $view = new View('access_index');
         $view->title = 'Benutzer';
         $view->heading = 'Benutzer';
-        $view->users = $userRepository->readAll();
         $view->display();
     }
 
