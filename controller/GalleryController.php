@@ -27,13 +27,26 @@ class GalleryController
         if ($_POST['send']) {
             $title = $_POST['title'];
             $user = $_SESSION['userid'];
-
+            $description = $_POST['description'];
             $galleryCategoryRepository = new GalleryCategoryRepository();
-            $galleryCategoryRepository->createGallery($title, $user);
+            $galleryCategoryRepository->createGallery($title, $user, $description);
 
             header("Location: /gallery");
         }
 
+    }
+
+    public function detail()
+    {
+        $view = new View('gallery_detail');
+        $view->title = 'Gallery';
+        $view->heading = 'Gallery';
+        $galleryImageRepository = new GalleryImageRepository();
+        $galleryCategoryRepository = new GalleryCategoryRepository();
+        $gallery_id = $_GET['galleryid'];
+        $view->gallery = $galleryCategoryRepository->readById($gallery_id);
+        $view->images = $galleryImageRepository->readyByGalleryId($gallery_id);
+        $view->display();
     }
 
     public function upload()

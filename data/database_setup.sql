@@ -15,6 +15,7 @@ CREATE TABLE `access_user` (
 CREATE TABLE `gallery_category` (
   `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `title` VARCHAR(64) NOT NULL,
+  `description` VARCHAR(200),
   `user_id` INT NOT NULL,
   FOREIGN KEY (`user_id`) REFERENCES `access_user`(`id`)
 );

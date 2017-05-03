@@ -2,6 +2,6 @@
         <h2>Oops! No posts found!</h2>
 <?php else: ?>
     <?php foreach ($gallery as $category): ?>
-        <?= $category->title;?>
+        <?php echo '<a href="/gallery/detail?galleryid='. $category->id . '">' . $category->title . '</a>'?>
     <?php endforeach ?>
 <?php endif ?>
