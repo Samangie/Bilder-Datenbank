@@ -4,5 +4,6 @@
 $(function(){
     $(document).ready(function() {
         $("#lightgallery").lightGallery();
+        $(":file").filestyle();
     });
 });

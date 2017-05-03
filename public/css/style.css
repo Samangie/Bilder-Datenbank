@@ -2,6 +2,45 @@ body {
   padding-top: 50px;
   font-size: 17px;
 }
+input[type="submit"] {
+  background: transparent;
+  border-color: #808080;
+  min-width: 100px;
+}
+input[type="submit"]:hover, input[type="submit"]:active,
+input[type="submit"]:focus, input[type="submit"]:visited,
+input[type="submit"]:active:hover, input[type="submit"]:active:focus
+select {
+  color: #fff;
+  background-color: #000;
+  border-color: #808080;
+  outline: none;
+}
+input[type="file"] {
+  display: none;
+}
+.bootstrap-filestyle .btn-default, .bootstrap-filestyle input,
+.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control,
+.bootstrap-filestyle .btn-default:hover, .bootstrap-filestyle .btn-default:active,
+.bootstrap-filestyle .btn-default:focus, .bootstrap-filestyle .btn-default:visited,
+.bootstrap-filestyle .btn-default:active:hover, .bootstrap-filestyle .btn-default:active:focus,
+.bootstrap-filestyle input:hover, .bootstrap-filestyle input:active,
+.bootstrap-filestyle input:focus, .bootstrap-filestyle input:visited,
+.bootstrap-filestyle input:active:hover, .bootstrap-filestyle input:active:focus, .bootstrap-filestyle .btn-default label{
+  background-color: #525252;
+  border: none;
+  color: #C7C7CD;
+  outline: none;
+  height: 34px;
+}
+.icon-span-filestyle {
+  margin-right: 6px;
+}
+
+.form-control{
+  background-color: #525252;
+  border: none;
+}
 
 .no-data {
   color: #808080;
