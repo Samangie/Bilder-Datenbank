@@ -29,7 +29,7 @@ class AccessRepository extends Repository
      */
     public function register($username, $email, $password)
     {
-        $passwordhash = sha1($password);
+        $passwordhash = sha1($password . "bdh4h") ;
 
         $query = "INSERT INTO $this->tableName (username, email, password) VALUES (?, ?, ?)";
 
@@ -57,7 +57,7 @@ class AccessRepository extends Repository
      * @throws Exception falls das Ausführen des Statements fehlschlägt
      */
     public function login($username, $password){
-        $password = sha1($password);
+        $password = sha1($password . "bdh4h") ;
         $query = "SELECT `id`, `isAdmin` FROM $this->tableName WHERE username = ? AND password = ?";
 
         $statement = ConnectionHandler::getConnection()->prepare($query);
