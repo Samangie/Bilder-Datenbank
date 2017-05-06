@@ -1,4 +1,4 @@
-<?php if($gallery->userid != $_SESSION['userid']) header("Location: /gallery") ?>
+<?php if($gallery->user_id != $_SESSION['userid']) header("Location: /gallery") ?>
 <div id="gallery">
     <h1>Gallery <?= $gallery->title ?></h1>
     <p>
@@ -15,7 +15,7 @@
         <div class="col-md-4 col-sm-6 col-xs-12 image">
             <?php
                 echo '<h3>' . $image->title .'</h3>';
-                echo '<a href="/data/images/'. $_SESSION["username"] . "/" . $image->image_name .'">';
+                echo '<a href="/data/images/'. $_SESSION["username"] . "/" . $image->image_name .'" data-lightbox="'. $gallery->title .'">';
                 echo '<img src="/data/thumbnails/'. $_SESSION["username"] . "/" . $image->image_name .'"/>';
                 echo '</a>';
             ?>
