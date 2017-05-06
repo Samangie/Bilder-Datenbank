@@ -103,5 +103,19 @@ class GalleryController
         }
     }
 
+    public function deleteCategory(){
+        $galleryCategoryRepository = new GalleryCategoryRepository();
+        $galleryimageRepository = new GalleryImageRepository();
+        $galleryid = $_GET['galleryid'];
+
+        if($galleryid != $_SESSION['userid']) header("Location: /gallery");
+        $galleryimageRepository->deleteByGalleryId($galleryid);
+        $galleryCategoryRepository->deleteById($galleryid);
+
+        header("Location: /gallery");
+    }
+
+
+
 
 }

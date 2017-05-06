@@ -1,5 +1,6 @@
 <?php if (Security::isLoggedIn()) header("Location: /gallery") ?>
 <h1>Login</h1>
+    <hr/>
 <?php
 
 $form = new Form('/access/doLogin');

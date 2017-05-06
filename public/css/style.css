@@ -5,14 +5,14 @@ body {
 h1 {
   margin-bottom: 22px;
 }
-input[type="submit"] {
+.btn-primary {
   background: transparent;
   border-color: #808080;
   min-width: 100px;
 }
-input[type="submit"]:hover, input[type="submit"]:active,
-input[type="submit"]:focus, input[type="submit"]:visited,
-input[type="submit"]:active:hover, input[type="submit"]:active:focus
+.btn-primary:hover, .btn-primary:active,
+.btn-primary:focus, .btn-primary:visited,
+.btn-primary:active:hover, .btn-primary:active:focus
 select {
   color: #fff;
   background-color: #000;
@@ -48,11 +48,11 @@ input[type="file"] {
 .no-data {
   color: #808080;
 }
-#gallery h1 {
-  margin-bottom: 40px;
-}
 
 #gallery .image img{
   width: 100%;
 }
 
+.gallery {
+  margin-bottom: 20px;
+}

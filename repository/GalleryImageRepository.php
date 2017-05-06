@@ -154,4 +154,16 @@ class GalleryImageRepository extends Repository
 
         return $rows;
     }
+
+    public function deleteByGalleryId($galleryid)
+    {
+        $query = "DELETE FROM {$this->tableName} WHERE gallery_id=?";
+
+        $statement = ConnectionHandler::getConnection()->prepare($query);
+        $statement->bind_param('i', $galleryid);
+
+        if (!$statement->execute()) {
+            throw new Exception($statement->error);
+        }
+    }
 }

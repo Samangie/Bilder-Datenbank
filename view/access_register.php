@@ -1,6 +1,7 @@
 <?php if (Security::isLoggedIn()) header("Location: /gallery") ?>
 
 <h1>Registrieren</h1>
+<hr/>
 <?php
 $form = new Form('/access/doRegister');
 if(isset($_SESSION["errorUsername"])){

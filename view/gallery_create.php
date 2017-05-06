@@ -1,3 +1,5 @@
+<h1>Galerie erstellen</h1>
+<hr/>
 <?php
 
 if (!Security::isLoggedIn()) header("Location: /gallery");
