@@ -26,7 +26,7 @@ if(isset($_SESSION["errorPw"])){
     echo $_SESSION["errorPw"];
     unset($_SESSION['errorPw']);
 }
-echo '<p style="font-style:italic;">At least 8 characters, 1 uppercase letter, 1 digit and 1 special char</p>';
+echo '<p style="font-style:italic;">mindestes 8 Zeichen, 1 Grossbuchstabe, 1 Zahl und 1 Spezialzeichen</p>';
 echo $form->text()->name('password')->placeholder('password')->type('password');
 if(isset($_SESSION["errorconfPw"])){
     echo $_SESSION["errorconfPw"];

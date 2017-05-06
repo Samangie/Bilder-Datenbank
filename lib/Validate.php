@@ -1,20 +1,15 @@
 <?php
 require_once '../repository/AccessRepository.php';
-/**
- * Created by PhpStorm.
- * User: bhawks
- * Date: 15.03.2017
- * Time: 11:15
- */
+
 class Validate
 {
 
     /**
-     * Überprüft den mitgegebenen Wert länger als 0 ist.
+     * Check if the text is not 0
      *
-     * @param $text die Eingabe welche überprüft wird
-     * @param $type Typ der Eingabe zb Username
-     * @return bool true wenn die Validation erfolgreich war
+     * @param $text the value to be checked
+     * @param $type the type of the value e.g 'Username'
+     * @return bool true if valdiation is successful
      */
     public function validateText($text, $type)
     {
@@ -22,47 +17,47 @@ class Validate
             return true;
         }
         $errorTitle = "error" . $type;
-        $_SESSION[$errorTitle] = '<p style="color:red;">Invalid ' . $type .'!</p>';
+        $_SESSION[$errorTitle] = '<p style="color:red;">Invalider ' . $type .'!</p>';
         return false;
     }
 
     /**
-     * Überprüft den mitgegebenen Wert dem Password-Pattern entspricht
+     * Check the value with the password-pattern
      *
-     * @param $password die Eingabe welche überprüft wird
-     * @return bool true wenn die Validation erfolgreich war
+     * @param $password the value to be checked
+     * @return bool true if valdiation is successful
      */
     public function validatePw($password)
     {
         if(preg_match('/^(?=.*\d)(?=.*[@#\-_$%^&+=§!\?])(?=.*[a-z])(?=.*[A-Z])[0-9A-Za-z@#\-_$%^&+=§!\?]{8,20}$/', $password)){
             return true;
         }
-        $_SESSION["errorPw"] = '<p style="color:red;">Invalid password!</p>';
+        $_SESSION["errorPw"] = '<p style="color:red;">Invalides Passwort!</p>';
         return false;
     }
 
     /**
-     * Überprüft den mitgegebenen Wert der selbe Wert ist wie $password
+     * Check if the value is the same as $password
      *
-     * @param $password die Eingabe welche mit der Variable $confpassword verglichen wird
-     * @param $confpassword die Eingabe welche mit der Variable $password verglichen wird
-     * @return bool true wenn die Validation erfolgreich war
+     * @param $password the value wich check with the variable $confpassword
+     * @param $confpassword the value wich check with the variable $password
+     * @return bool true if valdiation is successful
      */
     public function confirmPw($confpassword, $password)
     {
         if($confpassword == $password){
             return true;
         }
-        $_SESSION["errorconfPw"] = '<p style="color:red;">Not the same password!</p>';
+        $_SESSION["errorconfPw"] = '<p style="color:red;">Nicht das selbe Passwort!</p>';
         return false;
     }
 
     /**
-     * Überprüft den mitgegebenen Wert ob dieser bereits exisitiert
+     * Check if the value exist
      *
-     * @param $type Spaltenname welche überprüft werden soll
-     * @param $value die Eingabe welche überprüft wird
-     * @return bool true wenn die Eingabe noch nicht existiert
+     * @param $type attribute which is to be checked
+     * @param $value value which is checked
+     * @return bool true if value not exists
      */
     public function uniqueValue($value, $type) {
         $query = "SELECT `id` FROM `access_user` WHERE `$type` = ?";
@@ -84,24 +79,24 @@ class Validate
             return true;
         }
         $errorTitle = "error" . $type;
-        $_SESSION[$errorTitle] = '<p style="color:red;">'. $type .  ' exists already!</p>';
+        $_SESSION[$errorTitle] = '<p style="color:red;">'. $type .  ' exsitiert bereits!</p>';
         return false;
 
     }
 
     /**
-     * Überprüft den mitgegebenen Wert länger als 0 ist und nicht länger als 10.
+     * Check if the value exist
      *
-     * @param $title die Eingabe welche überprüft wird
-     * @return bool true wenn die Validation erfolgreich war
+     * @param $size size of the file
+     * @return bool true if value not higher than 4MB
      */
-    public function validateImageTitle($title)
-    {
-        if(strlen($title) > 0 && strlen($title)<= 10){
+
+    public function validateImageSize($size){
+        if($size < 4000000){
             return true;
         }
-        $_SESSION["errorTitle"] = '<p style="color:red;">Invalid title!</p>';
+
+        $_SESSION["errorSize"] = '<p style="color:red;">Das Bild darf nicht grösser als 4MB sein </p>';
         return false;
     }
-
 }

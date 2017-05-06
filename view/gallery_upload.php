@@ -1,6 +1,8 @@
+<h1>Upload</h1>
+<hr/>
 <?php
 $form = new Form('/gallery/doUpload');
-echo "<div class='form-group'><div class=\"col-md-12\">";
+echo "<div class='form-group'><div class=\"col-md-4\">";
 echo "<select name='galleryid'>";
 foreach ($gallery as $cat) {
     echo "<option value='$cat->id'>$cat->title</option>";
@@ -15,8 +17,11 @@ if(isset($_SESSION["errorImage"])){
     echo $_SESSION["errorImage"];
     unset($_SESSION['errorImage']);
 }
-echo '<p style="font-style:italic;">The filetype must be: png, jpg, jpeg!</p>';
-//echo '<input type="file" class="filestyle" data-classButton="btn btn-primary" data-input="false" data-classIcon="icon-plus" data-buttonText="Your label here.">';
+if(isset($_SESSION["errorSize"])){
+    echo $_SESSION["errorSize"];
+    unset($_SESSION['errorSize']);
+}
+
 echo $form->text()->name('image')->placeholder('image')->type('file');
 echo $form->submit()->label('Post')->name('post');
 $form->end();

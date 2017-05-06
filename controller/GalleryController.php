@@ -26,9 +26,9 @@ class GalleryController
     public function doCreate()
     {
         if ($_POST['send']) {
-            $title = $_POST['title'];
+            $title = htmlspecialchars($_POST['title']);
             $user = $_SESSION['userid'];
-            $description = $_POST['description'];
+            $description = htmlspecialchars($_POST['description']);
             $galleryCategoryRepository = new GalleryCategoryRepository();
             $galleryCategoryRepository->createGallery($title, $user, $description);
 
@@ -58,41 +58,34 @@ class GalleryController
         $view->heading = 'Upload';
         $view->image = $imageRepository->readAll();
         $galleryCategoryRepository = new GalleryCategoryRepository();
-        $view->gallery = $galleryCategoryRepository->readAll();
+        $view->gallery = $galleryCategoryRepository->readByUserId($_SESSION['userid']);
         $view->display();
     }
 
     public function doUpload()
     {
         if ($_POST['post']) {
-            $title = $_POST['title'];
-            $org_image_name = $_FILES['image']['name'];
+            $title = htmlspecialchars($_POST['title']);
+            $org_image_name = htmlspecialchars($_FILES['image']['name']);
+            $filesize=$_FILES['image']['size'];
             $image_path = $_FILES['image']['tmp_name'];
             $galler_id = $_POST['galleryid'];
-            $username = $_SESSION['username'];
-            $userid = $_SESSION['userid'];
+            $username = htmlspecialchars($_SESSION['username']);
             $galleryimageRepository = new GalleryImageRepository();
-
             $image_name = $org_image_name;
 
-            /**
-             *
-             * Validations Funktionen werden aufgerufen, falls nicht valide wird eine Session Variable erstellt welche
-             * im image_upload.php aufgerufen wird.
-             *
-             */
             $validate = new Validate();
-            $mistakeTitle = $validate->validateImageTitle($title);
+            $mistakeTitle = $validate->validateText($title, 'Title');
             if($mistakeTitle == false){
-                header('Location: /image/upload');
+                header('Location: /gallery/upload');
                 return false;
             }
-            /**
-             *
-             * Validiert ob File ein jpg, jpeg, png oder gif ist
-             * Falls dies der Fall ist wird ein Cookie gesetzt welches im image_upload.php aufgerufen wird.
-             *
-             */
+            $mistakeSize = $validate->validateImageSize($filesize);
+            if($mistakeSize == false){
+                header('Location: /gallery/upload');
+                return false;
+            }
+
             $imageFileType = pathinfo($org_image_name,PATHINFO_EXTENSION);
 
             if (!$galleryimageRepository->uploadImage($title,$image_name, $image_path, $imageFileType, $galler_id, $username )){

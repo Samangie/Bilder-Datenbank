@@ -39,10 +39,10 @@ class AccessController
     public function doRegister()
     {
         if ($_POST['send']) {
-            $username = $_POST['username'];
-            $email = $_POST['email'];
-            $password  = $_POST['password'];
-            $confpassword = $_POST['confpassword'];
+            $username = htmlspecialchars($_POST['username']);
+            $email = htmlspecialchars($_POST['email']);
+            $password  = htmlspecialchars($_POST['password']);
+            $confpassword = htmlspecialchars($_POST['confpassword']);
 
             $validate = new Validate();
 
@@ -74,8 +74,8 @@ class AccessController
     public function doLogin()
     {
         if ($_POST['send']) {
-            $username = $_POST['username'];
-            $password = $_POST['password'];
+            $username = htmlspecialchars($_POST['username']);
+            $password = htmlspecialchars($_POST['password']);
 
             $userRepository = new AccessRepository();
             $userRepository->login($username, $password);
@@ -93,9 +93,19 @@ class AccessController
     public function delete()
     {
         $userRepository = new AccessRepository();
-        $userRepository->deleteById($_GET['id']);
-
+        $userRepository->deleteById($_SESSION['userid']);
         // Anfrage an die URI /user weiterleiten (HTTP 302)
-        header('Location: '. $_SERVER["HTTP_REFERER"]);
+        header('Location: /access/logout');
     }
+
+    public function profil(){
+        $view = new View('access_profil');
+        $view->title = 'Profil';
+        $view->heading = 'Profil';
+        $user_id = $_SESSION['userid'];
+        $userRepository = new AccessRepository();
+        $view->userinfo = $userRepository->readById($user_id);
+        $view->display();
+    }
+
 }

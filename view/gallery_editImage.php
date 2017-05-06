@@ -10,9 +10,10 @@ if($gallery->user_id != $_SESSION['userid']) header("Location: /gallery") ?>
         <?= $gallery->description ?>
     </p>
     <hr />
+    <?php echo '<a href="/gallery/upload"><button class="btn btn-primary">Bild hochladen</button></a>';?>
     <?php if (empty($images)): ?>
         <div class="no-data">
-            <h3>Oops! No Images found!</h3>
+            <h3>Keine Bilder gefunden!</h3>
         </div>
     <?php else: ?>
         <div class="row" id="lightgallery">

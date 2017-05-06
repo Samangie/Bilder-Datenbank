@@ -1,18 +1,14 @@
 # Bilder Datenbank
 
 ## ToDo
-- Images Upload
-- Generate Thumbnails
 - Adminbereich
-- Userprofil
+- Userprofil - Daten ändern
 - Öffentliche Galerien 
-- Design
+- Design zwischen hell/ dunkel wechseln können
+- Tags
+- Verschiednene Ansichten für die Darstellung der Bilder
+- Bild für eine Galerie definieren 
 
-## Installation unter Windows
-
-### Vorbereitung
-
-Bevor du mit der Installation beginnen kannst, ist es wichtig, dass du auf deinem PC einen funktionierenden XAMPP Stack am laufen hast. Sollte das nicht der Fall sein, findest du im Internet eine Anleitung dazu.
 
 ### Installation
 
@@ -58,4 +54,16 @@ NameVirtualHost *:80
 </VirtualHost>
 ```
 
-Nun starte den Apache über das XAMPP Control Panel neu und du solltest mit dem Browser deines Vertrauens auf die Seite `http://my-project.local` zugreifen können.
+Importiere die Datei welche du unter /data/database_setup.sql findest. Damit erstellt sich automatisch eine 
+Daten bank mit Testbenutern und Testdaten. 
+
+Sollte ein Fehler auftreten kann auch die Datei /data/blank_database_setup.sql importiert werden. Darin sind 
+aber keine Testdaten enthalten. 
+
+Nun starte den Apache über das XAMPP Control Panel neu und du solltest mit dem Browser Chrome auf die Seite `http://my-project.local` zugreifen können.
+
+
+##Testbenutzer
+
+Benutzername: Test
+Passwort: gibbiX12345$

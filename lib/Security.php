@@ -4,7 +4,7 @@ class Security
 {
     /* *
      *
-     * Überprüft ob SESSION "loggedin" existiert
+     * Check if SESSION "loggedin" exists
      *
      * */
     public static function isLoggedIn() {
@@ -12,7 +12,7 @@ class Security
     }
     /* *
     *
-    * Überprüft ob SESSION "user" existiert
+    * Check if SESSION "user" exists
     *
     * */
     public static function getUsername() {
@@ -20,7 +20,7 @@ class Security
     }
     /* *
     *
-    * Überprüft ob SESSION "isAdmin/loggedin" existiert (Wert 1 = Admin)
+    * check if SESSION "isAdmin/loggedin" exists (value 1 = Admin)
     *
     * */
     public static function isAdmin(){

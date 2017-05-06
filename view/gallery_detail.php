@@ -5,12 +5,13 @@
         <?= $gallery->description ?>
     </p>
     <hr />
+    <?php echo '<a href="/gallery/upload"><button class="btn btn-primary">Bild hochladen</button></a>';?>
 <?php if (empty($images)): ?>
     <div class="no-data">
-        <h3>Oops! No Images found!</h3>
+        <h3>Keine Bilder gefunden!</h3>
     </div>
 <?php else: ?>
-    <?php echo '<a href="/gallery/editImage?galleryid='. $gallery->id .'">Bilder bearbeiten</a>';?>
+    <?php echo '<a href="/gallery/editImage?galleryid='. $gallery->id .'"><button class="btn btn-primary"> Bilder bearbeiten</button></a>';?>
     <div class="row" id="lightgallery">
     <?php foreach ($images as $image): ?>
         <div class="col-md-4 col-sm-6 col-xs-12 image">
