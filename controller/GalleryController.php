@@ -103,6 +103,24 @@ class GalleryController
         }
     }
 
+    public function editImage(){
+        $view = new View('gallery_editImage');
+        $view->title = 'Gallery';
+        $view->heading = 'Gallery';
+        $galleryImageRepository = new GalleryImageRepository();
+        $galleryCategoryRepository = new GalleryCategoryRepository();
+        $gallery_id = $_GET['galleryid'];
+        $view->gallery = $galleryCategoryRepository->readById($gallery_id);
+        $view->images = $galleryImageRepository->readyByGalleryId($gallery_id);
+        $view->display();
+    }
+
+    public function deleteImage(){
+        $galleryimageRepository = new GalleryImageRepository();
+        $galleryimageRepository->deleteImage($_SESSION['username'], $_GET['imagename']);
+        header("Location:  ". $_SERVER['HTTP_REFERER']);
+    }
+
     public function deleteCategory(){
         $galleryCategoryRepository = new GalleryCategoryRepository();
         $galleryimageRepository = new GalleryImageRepository();
@@ -114,8 +132,6 @@ class GalleryController
 
         header("Location: /gallery");
     }
-
-
 
 
 }

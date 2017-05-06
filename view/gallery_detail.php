@@ -10,6 +10,7 @@
         <h3>Oops! No Images found!</h3>
     </div>
 <?php else: ?>
+    <?php echo '<a href="/gallery/editImage?galleryid='. $gallery->id .'">Bilder bearbeiten</a>';?>
     <div class="row" id="lightgallery">
     <?php foreach ($images as $image): ?>
         <div class="col-md-4 col-sm-6 col-xs-12 image">

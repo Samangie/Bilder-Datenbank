@@ -166,4 +166,20 @@ class GalleryImageRepository extends Repository
             throw new Exception($statement->error);
         }
     }
+
+    public function deleteImage($username, $imagename){
+
+        unlink('data/images/' . strtolower($username) . '/'. $imagename);
+        unlink('data/thumbnails/' . strtolower($username) . '/'. $imagename);
+
+        $query = "DELETE FROM {$this->tableName} WHERE image_name=?";
+
+        $statement = ConnectionHandler::getConnection()->prepare($query);
+        $statement->bind_param('s', $imagename);
+
+        if (!$statement->execute()) {
+            throw new Exception($statement->error);
+        }
+
+    }
 }
