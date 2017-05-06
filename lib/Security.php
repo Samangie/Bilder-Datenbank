@@ -8,7 +8,7 @@ class Security
      *
      * */
     public static function isLoggedIn() {
-        return (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true);
+        return (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && isset($_SESSION['userid']) );
     }
     /* *
     *

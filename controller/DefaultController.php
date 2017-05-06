@@ -40,5 +40,6 @@ class DefaultController
         $view->title = 'Startseite';
         $view->heading = 'Startseite';
         $view->display();
+        header("Location: /access/register");
     }
 }

@@ -15,7 +15,7 @@
     <link href="/css/dark.css" rel="stylesheet">
 
     <!-- Plugin styles -->
-    <link href="/plugin/css/lightgallery.min.css" rel="stylesheet">
+    <link href="/css/lightbox.css" rel="stylesheet">
 
   </head>
   <body>

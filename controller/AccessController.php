@@ -11,8 +11,8 @@ class AccessController
     public function index()
     {
         $view = new View('access_index');
-        $view->title = 'Benutzer';
-        $view->heading = 'Benutzer';
+        $view->title = 'Login';
+        $view->heading = 'Login';
         $view->display();
     }
 
@@ -20,7 +20,7 @@ class AccessController
     {
         $view = new View('access_register');
         $view->title = 'Registration';
-        $view->heading = 'Register to WatchMeUp';
+        $view->heading = 'Registration';
         $view->display();
     }
 

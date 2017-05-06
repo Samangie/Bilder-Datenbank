@@ -1,3 +1,4 @@
+<?php if($gallery->userid != $_SESSION['userid']) header("Location: /gallery") ?>
 <div id="gallery">
     <h1>Gallery <?= $gallery->title ?></h1>
     <p>

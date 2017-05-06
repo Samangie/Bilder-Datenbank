@@ -9,8 +9,9 @@ class GalleryController
         $view = new View('gallery_index');
         $view->title = 'Gallery';
         $view->heading = 'Gallery';
+        $userid = $_SESSION['userid'];
         $galleryCategoryRepository = new GalleryCategoryRepository();
-        $view->gallery = $galleryCategoryRepository->readAll();
+        $view->gallery = $galleryCategoryRepository->readByUserId($userid);
         $view->display();
     }
 

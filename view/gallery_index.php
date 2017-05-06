@@ -1,3 +1,5 @@
+<?php if (!Security::isLoggedIn()) header("Location: /access/register");
+?>
 <?php if (empty($gallery)): ?>
         <h2>Oops! No posts found!</h2>
 <?php else: ?>
