@@ -58,7 +58,7 @@ class AccessRepository extends Repository
      */
     public function login($username, $password){
         $password = sha1($password . "bdh4h") ;
-        $query = "SELECT `id`, `isAdmin` FROM $this->tableName WHERE username = ? AND password = ?";
+        $query = "SELECT `id` FROM $this->tableName WHERE username = ? AND password = ?";
 
         $statement = ConnectionHandler::getConnection()->prepare($query);
         if (!$statement) {
@@ -78,7 +78,6 @@ class AccessRepository extends Repository
             $_SESSION['loggedin'] = true;
             $_SESSION['username'] = $username;
             $_SESSION['userid'] =  $user['id'];
-            $_SESSION['isAdmin'] = $user['isAdmin'];
 
         }
     }
