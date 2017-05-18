@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 06. Mai 2017 um 23:24
+-- Erstellungszeit: 06. Mai 2017 um 23:38
 -- Server-Version: 10.1.21-MariaDB
 -- PHP-Version: 5.6.30
 
@@ -30,17 +30,16 @@ CREATE TABLE `access_user` (
   `id` int(11) NOT NULL,
   `username` varchar(64) COLLATE utf8_german2_ci NOT NULL,
   `email` varchar(64) COLLATE utf8_german2_ci NOT NULL,
-  `password` varchar(64) COLLATE utf8_german2_ci NOT NULL,
-  `isAdmin` tinyint(4) DEFAULT '0'
+  `password` varchar(64) COLLATE utf8_german2_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_german2_ci;
 
 --
 -- Daten für Tabelle `access_user`
 --
 
-INSERT INTO `access_user` (`id`, `username`, `email`, `password`, `isAdmin`) VALUES
-(1, 'Test', 'test@gibb.ch', 'f0449f4d4ad115a9df25c6569723a7737bf137cb', 0),
-(2, 'Sam', 'sam.hawkes@comvation.com', '48c856b6b8586122dc695f13a31888e364e3da15', 0);
+INSERT INTO `access_user` (`id`, `username`, `email`, `password`) VALUES
+(1, 'Test', 'test@gibb.ch', 'f0449f4d4ad115a9df25c6569723a7737bf137cb'),
+(2, 'Sam', 'sam.hawkes@comvation.com', '48c856b6b8586122dc695f13a31888e364e3da15');
 
 -- --------------------------------------------------------
 

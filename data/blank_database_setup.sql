@@ -8,8 +8,7 @@ CREATE TABLE `access_user` (
   `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `username` VARCHAR(64) NOT NULL ,
   `email` VARCHAR(64) NOT NULL,
-  `password` VARCHAR(64) NOT NULL,
-  `isAdmin` TINYINT DEFAULT 0
+  `password` VARCHAR(64) NOT NULL
 );
 
 CREATE TABLE `gallery_category` (

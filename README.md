@@ -54,7 +54,7 @@ NameVirtualHost *:80
 </VirtualHost>
 ```
 
-Importiere die Datei welche du unter /data/database_setup.sql findest. Damit erstellt sich automatisch eine 
+Importiere die Datei welche du unter /data/bilderdb_4h_hawkes.sql findest. Damit erstellt sich automatisch eine 
 Daten bank mit Testbenutern und Testdaten. 
 
 Sollte ein Fehler auftreten kann auch die Datei /data/blank_database_setup.sql importiert werden. Darin sind 
@@ -67,3 +67,6 @@ Nun starte den Apache über das XAMPP Control Panel neu und du solltest mit dem 
 
 Benutzername: Test
 Passwort: gibbiX12345$
+
+## Sonstiges
+ERD und Arbeitsjournal sind unter /data zu finden. 
